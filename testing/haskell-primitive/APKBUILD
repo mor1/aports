@@ -1,0 +1,30 @@
+# Contributor:
+# Maintainer:
+pkgname=testing/haskell-primitive
+pkgver=0.6.4.0
+pkgrel=0
+pkgdesc="Wrappers for primitive operations"
+url="https://hackage.haskell.org/package/primitive"
+arch="all"
+license="BSD"
+depends=""
+depends_dev=""
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-dev $pkgname-doc"
+source="https://hackage.haskell.org/package/primitive-$pkgver/primitive-$pkgver.tar.gz"
+sha512sums="a9d31b386c41abd4a5e601883b6f4d230c9669d1eda840a3491fc2e5961e8bce0c2bc1026426b92a36790cd372db954b3003499c540605289540e26543e12b80  primitive-0.6.4.0.tar.gz"
+builddir="$srcdir/primitive-$pkgver"
+
+build() {
+	cd "$builddir"
+}
+
+check() {
+	cd "$builddir"
+}
+
+package() {
+	cd "$builddir"
+}
+

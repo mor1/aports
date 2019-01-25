@@ -1,0 +1,44 @@
+# Contributor: Richard Mortier <mort@cantab.net>
+# Maintainer: Richard Mortier <mort@cantab.net>
+pkgname=haskell-random
+pkgver=1.1
+pkgrel=0
+pkgdesc="Random number library"
+url="https://hackage.haskell.org/package/random"
+arch="x86_64"
+license="BSD"
+depends=""
+makedepends="ghc"
+install="$pkgname.post-install $pkgname.pre-deinstall"
+subpackages="$pkgname-doc"
+source="https://hackage.haskell.org/package/random-$pkgver/random-$pkgver.tar.gz"
+builddir="$srcdir/random-$pkgver"
+options="!check"
+
+build() {
+	cd "$builddir"
+
+	runhaskell Setup configure -O \
+		--disable-library-vanilla \
+		--docdir=/usr/share/doc/$pkgname \
+		--dynlibdir=/usr/lib/\$compiler/\$pkgid \
+		--enable-executable-dynamic \
+		--enable-shared \
+		--libsubdir=\$compiler/\$pkgid \
+		--prefix=/usr
+	runhaskell Setup build
+	runhaskell Setup register --gen-script
+	runhaskell Setup unregister --gen-script
+}
+
+package() {
+	cd "$builddir"
+
+	install -D -m744 register.sh "$pkgdir"/usr/share/haskell/register/$pkgname.sh
+	install -D -m744 unregister.sh "$pkgdir"/usr/share/haskell/unregister/$pkgname.sh
+	runhaskell Setup copy --destdir="$pkgdir"
+	install -D -m644 "LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	rm -f "${pkgdir}/usr/share/doc/${pkgname}/LICENSE"
+}
+
+sha512sums="7f128b1c88adfe7ee6405578d3c999bb77e9e3c21e16f82a5197c0ad1d6731851e99e08d8169c6a8b1068ad8a1614c1c0ef8c04c1958337a6e325f1de0c718a3  random-1.1.tar.gz"
