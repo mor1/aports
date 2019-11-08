@@ -19,6 +19,9 @@ source="https://downloads.powerdns.com/releases/${_pkgname}-${pkgver}.tar.bz2
 	${_pkgname}.initd
 	recursor.conf
 	"
+signatures="
+	https://downloads.powerdns.com/releases/${_pkgname}-${pkgver}.tar.bz2.sig
+"
 builddir="${srcdir}/${_pkgname}-${pkgver}"
 
 # secfixes:
@@ -70,13 +73,13 @@ package() {
 		"${pkgdir}/etc/pdns/root.hints"
 }
 
-gpg_signature_extensions="sig"
-gpgfingerprints="
-	FBAE 0323 821C 7706 A5CA 151B  DCF5 13FA 7EED 19F3
-	1628 90D0 689D D12D D33E 4696  1C5E E990 D2E7 1575
-	good:B76C D467 1C09 68BA A87D  E61C 5E50 715B F2FF E1A7
-	good:16E1 2866 B773 8C73 976A  5743 6FFC 3343 9B0D 04DF
-	"
+# gpg_signature_extensions="sig"
+# gpgfingerprints="
+# 	FBAE 0323 821C 7706 A5CA 151B  DCF5 13FA 7EED 19F3
+# 	1628 90D0 689D D12D D33E 4696  1C5E E990 D2E7 1575
+# 	good:B76C D467 1C09 68BA A87D  E61C 5E50 715B F2FF E1A7
+# 	good:16E1 2866 B773 8C73 976A  5743 6FFC 3343 9B0D 04DF
+# 	"
 
 sha512sums="e4be63c1be70f0dfd7aab71f1184d5cc1d15e60e775451a96e8472db6fb3825762ebd6f51b593b167389868bbfde0538612b14a04c03f3f60a7e49f7882e78bf  pdns-recursor-4.2.0.tar.bz2
 b286529121449d6f213da0486bbe434f5bcc317507716124f249db704da92b8a40949224711fc4c409b7600d11574640cc02dff57f24579d5494194b27e99384  pdns-recursor-GPGKEYS
